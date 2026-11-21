@@ -1,0 +1,162 @@
+:root {
+	--bg-gradient: radial-gradient(circle at top, #1f1654 0%, #0d081c 60%, #070410 100%);
+	--card-border: rgba(255, 255, 255, 0.15);
+	--accent-gold: #ffcc00;
+}
+
+body {
+	background: var(--bg-gradient);
+	background-attachment: fixed;
+	font-family: 'Inter', sans-serif;
+	color: #f8f9fa;
+}
+
+.max-w-900 {
+	max-width: 900px;
+}
+
+/* Cabeçalho */
+.hero-header {
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.titulo {
+	font-family: 'Bangers', cursive;
+	letter-spacing: 3px;
+	color: var(--accent-gold);
+	text-shadow: 0 4px 15px rgba(255, 204, 0, 0.35), 2px 2px 0px #000;
+}
+
+/* Card da Figurinha / Quadrinho */
+.img-container {
+	position: relative;
+	cursor: pointer;
+	border: 2px solid var(--card-border);
+	border-radius: 14px;
+	overflow: hidden;
+	background: #12121a;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+	aspect-ratio: 2 / 3; /* Mantém proporção exata de capa de HQ em qualquer tela */
+}
+
+.img-container:hover {
+	transform: translateY(-6px) scale(1.02);
+	border-color: var(--accent-gold);
+	box-shadow: 0 15px 35px rgba(255, 204, 0, 0.2);
+}
+
+.imgfig {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.4s ease;
+}
+
+.img-container:hover .imgfig {
+	transform: scale(1.05);
+}
+
+/* Selos superiores (Editora e Número) */
+.badge-editora {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	padding: 4px 10px;
+	border-radius: 6px;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	z-index: 2;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.badge-marvel {
+	background-color: #e62429;
+	color: #fff;
+}
+
+.badge-dc {
+	background-color: #0476f2;
+	color: #fff;
+}
+
+.badge-outra {
+	background-color: #6c757d;
+	color: #fff;
+}
+
+.numero {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	background: var(--accent-gold);
+	color: #111;
+	padding: 4px 10px;
+	border-radius: 6px;
+	font-weight: 800;
+	font-size: 0.85rem;
+	z-index: 2;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Rodapé sutil com título da HQ sobre a capa */
+.card-titulo-barra {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 28px 14px 12px;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 20%, transparent 100%);
+	color: #fff;
+	font-weight: 700;
+	font-size: 0.95rem;
+	z-index: 2;
+	transition: opacity 0.3s ease;
+}
+
+.img-container.ativo .card-titulo-barra {
+	opacity: 0;
+}
+
+/* Overlay da Descrição */
+.overlay-text {
+	position: absolute;
+	inset: 0;
+	background: rgba(10, 8, 22, 0.92);
+	backdrop-filter: blur(4px);
+	color: #f1f1f1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 48px 18px 16px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.35s ease, visibility 0.35s ease;
+	z-index: 3;
+}
+
+.img-container.ativo .overlay-text {
+	opacity: 1;
+	visibility: visible;
+}
+
+.overlay-descricao {
+	overflow-y: auto;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	text-align: left;
+	padding-right: 4px;
+}
+
+/* Barra de rolagem discreta dentro do card */
+.overlay-descricao::-webkit-scrollbar {
+	width: 4px;
+}
+.overlay-descricao::-webkit-scrollbar-thumb {
+	background: rgba(255, 204, 0, 0.5);
+	border-radius: 4px;
+}
